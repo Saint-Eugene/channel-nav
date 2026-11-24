@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Навигация по каналу</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{
+  --bg:var(--tg-theme-bg-color,#fff); --fg:var(--tg-theme-text-color,#111);
+  --hint:var(--tg-theme-hint-color,#707579); --card:var(--tg-theme-secondary-bg-color,#f1f3f5);
+  --accent:var(--tg-theme-link-color,#2481cc);
+  --btn:var(--tg-theme-button-color,#2481cc); --btn-fg:var(--tg-theme-button-text-color,#fff);
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:var(--tg-theme-bg-color,#17212b); --fg:var(--tg-theme-text-color,#f5f5f5);
+  --hint:var(--tg-theme-hint-color,#8b98a5); --card:var(--tg-theme-secondary-bg-color,#232e3c);
+  --accent:var(--tg-theme-link-color,#6ab3f3);
+}}
+*{box-sizing:border-box}
+body{margin:0;padding:12px 12px calc(24px + env(safe-area-inset-bottom));
+  background:var(--bg);color:var(--fg);
+  font:16px/1.4 -apple-system,system-ui,"Segoe UI",Roboto,sans-serif}
+#game{display:block;width:100%;padding:14px;margin:0 0 10px;border:0;border-radius:12px;
+  background:var(--btn);color:var(--btn-fg);font:inherit;font-weight:600;cursor:pointer}
+#game[hidden],#back[hidden]{display:none}
+#q{width:100%;padding:12px 14px;border:0;border-radius:12px;background:var(--card);
+  color:var(--fg);font:inherit;outline:none}
+#bar{display:flex;align-items:center;gap:8px;margin:12px 2px 8px;min-height:28px}
+#back{border:0;background:none;color:var(--accent);font:inherit;padding:4px 8px 4px 0;cursor:pointer}
+#crumbs{color:var(--hint);font-size:14px}
+h2{font-size:15px;color:var(--hint);font-weight:600;margin:16px 2px 6px}
+.item,.post{display:flex;justify-content:space-between;align-items:center;gap:10px;
+  width:100%;padding:13px 14px;margin:0 0 6px;border:0;border-radius:12px;
+  background:var(--card);color:var(--fg);font:inherit;text-align:left;
+  text-decoration:none;cursor:pointer}
+.item.off{opacity:.45;cursor:default}
+.item.all{color:var(--accent)}
+.cnt{color:var(--hint);font-size:14px;white-space:nowrap}
+.post{display:block;color:var(--accent)}
+.hint{color:var(--hint);padding:8px 2px}
+</style>
+</head>
+<body>
+<button id="game" type="button">🎮 Играть</button>
+<input id="q" type="search" placeholder="Поиск: страна, штат, тег…" autocomplete="off">
+<div id="bar"><button id="back" type="button" hidden>← Назад</button><span id="crumbs"></span></div>
+<div id="list"><p class="hint">Загрузка…</p></div>
+
+<script>
+// ЕДИНСТВЕННОЕ, ЧТО НУЖНО ЗАМЕНИТЬ: имя бота (без @) в ссылке на игру
+const GAME_LINK = "https://t.me/ИМЯ_БОТА/game";
+
+// Данные читаются из репозитория автоматически (адрес считается сам)
+const DATA_URL = location.hostname.endsWith('github.io')
+  ? `https://raw.githubusercontent.com/${location.hostname.split('.')[0]}/${location.pathname.split('/')[1]}/main/data.json`
+  : 'data.json';
+
+const tg = window.Telegram && Telegram.WebApp;
+if (tg) { tg.ready(); tg.expand(); }
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const collator = new Intl.Collator('ru', { sensitivity: 'base' });
+const key = s => s.replace(/^#/, '');
+
+let DATA, path = [], all = false;
+
+function nodeAt(p) {
+  let list = DATA.tree, node = null;
+  for (const i of p) { node = list[i]; list = node.c || []; }
+  return { node, list };
+}
+function flat(list, p, out) {
+  list.forEach((n, i) => {
+    const q = p.concat(i);
+    out.push({ n, p: q });
+    if (n.c) flat(n.c, q, out);
+  });
+  return out;
+}
+function collect(n, m = new Map()) {
+  for (const t of [n.tag, n.own]) if (t)
+    (DATA.tags[t] || []).forEach(([id, x]) => m.set(id, x));
+  (n.c || []).forEach(c => collect(c, m));
+  return m;
+}
+const countOf = n => collect(n).size;
+
+// сначала пункты с постами по алфавиту, затем пустые по алфавиту; «Теги» всегда последним
+function sortedItems(list) {
+  const arr = list.map((n, i) => ({ n, i, c: countOf(n) }));
+  const geo = arr.filter(x => !x.n.misc).sort((a, b) =>
+    ((b.c > 0) - (a.c > 0)) || collator.compare(key(a.n.t), key(b.n.t)));
+  return geo.concat(arr.filter(x => x.n.misc));
+}
+
+function itemHtml(n, p, c) {
+  const off = c === 0;
+  return `<button class="item${off ? ' off' : ''}"${off ? ' disabled' : ''} data-path="${p.join(',')}">
+    <span>${esc(n.t)}</span><span class="cnt">${c}${n.c ? ' ›' : ''}</span></button>`;
+}
+function postsHtml(map) {
+  const arr = [...map].sort((a, b) => b[0] - a[0]);
+  if (!arr.length) return '<p class="hint">Постов пока нет.</p>';
+  return arr.map(([id, t]) =>
+    `<a class="post" href="https://t.me/${DATA.channel}/${id}">${esc(t)}</a>`).join('');
+}
+function crumbs() {
+  let l = DATA.tree; const out = ['Главная'];
+  for (const i of path) { out.push(l[i].t); l = l[i].c || []; }
+  if (all) out.push('Все посты');
+  return out.join(' › ');
+}
+
+function render() {
+  const q = $('#q').value.trim().toLowerCase();
+  const { node, list } = nodeAt(path);
+  let html = '';
+
+  if (q) {
+    const found = flat(DATA.tree, [], [])
+      .filter(x => [x.n.t, x.n.tag, x.n.own].join(' ').toLowerCase().includes(q))
+      .map(x => ({ ...x, c: countOf(x.n) }))
+      .filter(x => x.c > 0)
+      .sort((a, b) => collator.compare(key(a.n.t), key(b.n.t)))
+      .slice(0, 30);
+    const posts = new Map();
+    for (const tag in DATA.tags)
+      for (const [id, t] of DATA.tags[tag])
+        if (t.toLowerCase().includes(q)) posts.set(id, t);
+    if (found.length) html += '<h2>Разделы и теги</h2>' + found.map(x => itemHtml(x.n, x.p, x.c)).join('');
+    if (posts.size) html += `<h2>Посты (${posts.size})</h2>` + postsHtml(new Map([...posts].slice(0, 50)));
+    if (!html) html = '<p class="hint">Ничего не найдено.</p>';
+    $('#crumbs').textContent = 'Поиск';
+  } else if (node && node.tag) {
+    html = `<h2>${esc(node.tag)}</h2>` + postsHtml(collect(node));
+    $('#crumbs').textContent = crumbs();
+  } else if (all && node) {
+    html = `<h2>${esc(node.t)}: все посты</h2>` + postsHtml(collect(node));
+    $('#crumbs').textContent = crumbs();
+  } else {
+    if (node && collect(node).size)
+      html += `<button class="item all" data-all="1"><span>Все посты раздела</span><span class="cnt">${collect(node).size}</span></button>`;
+    html += sortedItems(list).map(x =>
+      (x.n.misc ? '<h2>Не география</h2>' : '') + itemHtml(x.n, path.concat(x.i), x.c)).join('');
+    $('#crumbs').textContent = crumbs();
+  }
+
+  $('#list').innerHTML = html;
+  $('#game').hidden = path.length > 0 || all;
+  const canBack = !!(q || all || path.length);
+  $('#back').hidden = !canBack;
+  if (tg) canBack ? tg.BackButton.show() : tg.BackButton.hide();
+}
+
+function back() {
+  if ($('#q').value) $('#q').value = '';
+  else if (all) all = false;
+  else path.pop();
+  render(); window.scrollTo(0, 0);
+}
+
+$('#back').onclick = back;
+if (tg) tg.BackButton.onClick(back);
+$('#q').addEventListener('input', render);
+
+$('#game').onclick = () => {
+  if (tg && GAME_LINK.startsWith('https://t.me/')) tg.openTelegramLink(GAME_LINK);
+  else if (tg) tg.openLink(GAME_LINK);
+  else window.open(GAME_LINK, '_blank');
+};
+
+$('#list').addEventListener('click', e => {
+  const post = e.target.closest('a.post');
+  if (post) {
+    if (tg) { e.preventDefault(); tg.openTelegramLink(post.href); }
+    return;
+  }
+  const btn = e.target.closest('.item');
+  if (!btn || btn.disabled) return;
+  if (btn.dataset.all) { all = true; }
+  else {
+    path = btn.dataset.path ? btn.dataset.path.split(',').map(Number) : [];
+    all = false;
+  }
+  $('#q').value = '';
+  render(); window.scrollTo(0, 0);
+});
+
+fetch(DATA_URL + '?v=' + Date.now())
+  .then(r => r.json())
+  .then(d => { DATA = d; render(); })
+  .catch(() => { $('#list').innerHTML = '<p class="hint">Не удалось загрузить данные. Проверьте, что в репозитории есть файл data.json.</p>'; });
+</script>
+</body>
+</html>
