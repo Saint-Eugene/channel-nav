@@ -113,5 +113,4 @@ TREE = {
     "Азия": continent("#Asia", ASIA),
     "Африка": continent("#Africa", AFRICA),
     "Австралия и Океания": continent("#Oceania", OCEANIA),
-    "Антарктида": "#Antarctica",
 }
