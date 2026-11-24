@@ -101,6 +101,8 @@ def main():
             break
         for u in updates:
             state["offset"] = u["update_id"] + 1
+             print("update", u["update_id"], list(u.keys()),
+                  (u.get("message") or {}).get("forward_origin"))
             post = u.get("channel_post") or u.get("edited_channel_post")
             if post:
                 if is_my_channel(post["chat"]):
