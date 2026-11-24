@@ -2,8 +2,8 @@ import json, os, re, urllib.parse, urllib.request
 from geo import TREE
 
 # ЗАМЕНИТЕ два значения ниже
-CHANNEL = "username_канала"   # публичное имя канала, без @
-OWNER_ID = 123456789          # ваш Telegram ID (число из @userinfobot)
+CHANNEL = "Eugene's plates"   # публичное имя канала, без @
+OWNER_ID = 493151157          # ваш Telegram ID (число из @userinfobot)
 
 TOKEN = os.environ["BOT_TOKEN"]
 API = f"https://api.telegram.org/bot{TOKEN}/"
