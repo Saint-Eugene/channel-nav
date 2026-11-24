@@ -103,7 +103,7 @@
         North Dakota: #North_Dakota
         Ohio: #Ohio
         Oklahoma: #Oklahoma
-        Oregon: #Oregon
+        Oregon: #oregon
         Pennsylvania: #Pennsylvania
         Rhode Island: #Rhode_Island
         South Carolina: #South_Carolina
