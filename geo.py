@@ -106,7 +106,7 @@ TREE = {
     "Северная Америка": continent("#North_America", CENTRAL_AMERICA_CARIBBEAN, {
         "Канада": {"_tag": "#Canada", **subdivisions(CANADA)},
         "Мексика": {"_tag": "#Mexico", **subdivisions(MEXICO)},
-        "США": {"_tag": "#United_States", **subdivisions(US_STATES)},
+        "США": {"_tag": "#usa", **subdivisions(US_STATES)},
     }),
     "Южная Америка": continent("#South_America", SOUTH_AMERICA),
     "Европа": continent("#Europe", EUROPE),
