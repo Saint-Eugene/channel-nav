@@ -1,0 +1,300 @@
+Северная Америка: #North_America
+    Антигуа и Барбуда: #Antigua_and_Barbuda
+    Багамы: #Bahamas
+    Барбадос: #Barbados
+    Белиз: #Belize
+    Гаити: #Haiti
+    Гватемала: #Guatemala
+    Гондурас: #Honduras
+    Гренада: #Grenada
+    Доминика: #Dominica
+    Доминиканская Республика: #Dominican_Republic
+    Коста-Рика: #Costa_Rica
+    Куба: #Cuba
+    Никарагуа: #Nicaragua
+    Панама: #Panama
+    Сальвадор: #El_Salvador
+    Сент-Винсент и Гренадины: #Saint_Vincent_and_the_Grenadines
+    Сент-Китс и Невис: #Saint_Kitts_and_Nevis
+    Сент-Люсия: #Saint_Lucia
+    Тринидад и Тобаго: #Trinidad_and_Tobago
+    Ямайка: #Jamaica
+    Канада: #Canada
+        Alberta: #Alberta
+        British Columbia: #British_Columbia
+        Manitoba: #Manitoba
+        New Brunswick: #New_Brunswick
+        Newfoundland and Labrador: #Newfoundland_and_Labrador
+        Nova Scotia: #Nova_Scotia
+        Ontario: #Ontario
+        Prince Edward Island: #Prince_Edward_Island
+        Quebec: #Quebec
+        Saskatchewan: #Saskatchewan
+        Northwest Territories: #Northwest_Territories
+        Nunavut: #Nunavut
+        Yukon: #Yukon
+    Мексика: #Mexico
+        Aguascalientes: #Aguascalientes
+        Baja California: #Baja_California
+        Baja California Sur: #Baja_California_Sur
+        Campeche: #Campeche
+        Chiapas: #Chiapas
+        Chihuahua: #Chihuahua
+        Coahuila: #Coahuila
+        Colima: #Colima
+        Mexico City: #Mexico_City
+        Durango: #Durango
+        Guanajuato: #Guanajuato
+        Guerrero: #Guerrero
+        Hidalgo: #Hidalgo
+        Jalisco: #Jalisco
+        State of Mexico: #State_of_Mexico
+        Michoacan: #Michoacan
+        Morelos: #Morelos
+        Nayarit: #Nayarit
+        Nuevo Leon: #Nuevo_Leon
+        Oaxaca: #Oaxaca
+        Puebla: #Puebla
+        Queretaro: #Queretaro
+        Quintana Roo: #Quintana_Roo
+        San Luis Potosi: #San_Luis_Potosi
+        Sinaloa: #Sinaloa
+        Sonora: #Sonora
+        Tabasco: #Tabasco
+        Tamaulipas: #Tamaulipas
+        Tlaxcala: #Tlaxcala
+        Veracruz: #Veracruz
+        Yucatan: #Yucatan
+        Zacatecas: #Zacatecas
+    США: #United_States
+        Alabama: #Alabama
+        Alaska: #Alaska
+        Arizona: #Arizona
+        Arkansas: #Arkansas
+        California: #California
+        Colorado: #Colorado
+        Connecticut: #Connecticut
+        Delaware: #Delaware
+        Florida: #Florida
+        Georgia: #Georgia_US
+        Hawaii: #Hawaii
+        Idaho: #Idaho
+        Illinois: #Illinois
+        Indiana: #Indiana
+        Iowa: #Iowa
+        Kansas: #Kansas
+        Kentucky: #Kentucky
+        Louisiana: #Louisiana
+        Maine: #Maine
+        Maryland: #Maryland
+        Massachusetts: #Massachusetts
+        Michigan: #Michigan
+        Minnesota: #Minnesota
+        Mississippi: #Mississippi
+        Missouri: #Missouri
+        Montana: #Montana
+        Nebraska: #Nebraska
+        Nevada: #Nevada
+        New Hampshire: #New_Hampshire
+        New Jersey: #New_Jersey
+        New Mexico: #New_Mexico
+        New York: #New_York
+        North Carolina: #North_Carolina
+        North Dakota: #North_Dakota
+        Ohio: #Ohio
+        Oklahoma: #Oklahoma
+        Oregon: #Oregon
+        Pennsylvania: #Pennsylvania
+        Rhode Island: #Rhode_Island
+        South Carolina: #South_Carolina
+        South Dakota: #South_Dakota
+        Tennessee: #Tennessee
+        Texas: #Texas
+        Utah: #Utah
+        Vermont: #Vermont
+        Virginia: #Virginia
+        Washington: #Washington_State
+        West Virginia: #West_Virginia
+        Wisconsin: #Wisconsin
+        Wyoming: #Wyoming
+        District of Columbia: #District_of_Columbia
+Южная Америка: #South_America
+    Аргентина: #Argentina
+    Боливия: #Bolivia
+    Бразилия: #Brazil
+    Венесуэла: #Venezuela
+    Гайана: #Guyana
+    Колумбия: #Colombia
+    Парагвай: #Paraguay
+    Перу: #Peru
+    Суринам: #Suriname
+    Уругвай: #Uruguay
+    Чили: #Chile
+    Эквадор: #Ecuador
+Европа: #Europe
+    Албания: #Albania
+    Андорра: #Andorra
+    Австрия: #Austria
+    Беларусь: #Belarus
+    Бельгия: #Belgium
+    Босния и Герцеговина: #Bosnia_and_Herzegovina
+    Болгария: #Bulgaria
+    Ватикан: #Vatican_City
+    Великобритания: #United_Kingdom
+    Венгрия: #Hungary
+    Германия: #Germany
+    Греция: #Greece
+    Дания: #Denmark
+    Ирландия: #Ireland
+    Исландия: #Iceland
+    Испания: #Spain
+    Италия: #Italy
+    Кипр: #Cyprus
+    Косово: #Kosovo
+    Латвия: #Latvia
+    Литва: #Lithuania
+    Лихтенштейн: #Liechtenstein
+    Люксембург: #Luxembourg
+    Мальта: #Malta
+    Молдова: #Moldova
+    Монако: #Monaco
+    Нидерланды: #Netherlands
+    Норвегия: #Norway
+    Польша: #Poland
+    Португалия: #Portugal
+    Россия: #Russia
+    Румыния: #Romania
+    Сан-Марино: #San_Marino
+    Северная Македония: #North_Macedonia
+    Сербия: #Serbia
+    Словакия: #Slovakia
+    Словения: #Slovenia
+    Украина: #Ukraine
+    Финляндия: #Finland
+    Франция: #France
+    Хорватия: #Croatia
+    Черногория: #Montenegro
+    Чехия: #Czechia
+    Швейцария: #Switzerland
+    Швеция: #Sweden
+    Эстония: #Estonia
+Азия: #Asia
+    Азербайджан: #Azerbaijan
+    Армения: #Armenia
+    Афганистан: #Afghanistan
+    Бангладеш: #Bangladesh
+    Бахрейн: #Bahrain
+    Бруней: #Brunei
+    Бутан: #Bhutan
+    Вьетнам: #Vietnam
+    Грузия: #Georgia
+    Израиль: #Israel
+    Индия: #India
+    Индонезия: #Indonesia
+    Иордания: #Jordan
+    Ирак: #Iraq
+    Иран: #Iran
+    Йемен: #Yemen
+    Казахстан: #Kazakhstan
+    Камбоджа: #Cambodia
+    Катар: #Qatar
+    Кувейт: #Kuwait
+    Кыргызстан: #Kyrgyzstan
+    Китай: #China
+    КНДР: #North_Korea
+    Лаос: #Laos
+    Ливан: #Lebanon
+    Малайзия: #Malaysia
+    Мальдивы: #Maldives
+    Монголия: #Mongolia
+    Мьянма: #Myanmar
+    Непал: #Nepal
+    ОАЭ: #United_Arab_Emirates
+    Оман: #Oman
+    Пакистан: #Pakistan
+    Палестина: #Palestine
+    Саудовская Аравия: #Saudi_Arabia
+    Сингапур: #Singapore
+    Сирия: #Syria
+    Таджикистан: #Tajikistan
+    Таиланд: #Thailand
+    Тайвань: #Taiwan
+    Тимор-Лесте: #Timor_Leste
+    Туркменистан: #Turkmenistan
+    Турция: #Turkey
+    Узбекистан: #Uzbekistan
+    Филиппины: #Philippines
+    Шри-Ланка: #Sri_Lanka
+    Южная Корея: #South_Korea
+    Япония: #Japan
+Африка: #Africa
+    Алжир: #Algeria
+    Ангола: #Angola
+    Бенин: #Benin
+    Ботсвана: #Botswana
+    Буркина-Фасо: #Burkina_Faso
+    Бурунди: #Burundi
+    Габон: #Gabon
+    Гамбия: #Gambia
+    Гана: #Ghana
+    Гвинея: #Guinea
+    Гвинея-Бисау: #Guinea_Bissau
+    Джибути: #Djibouti
+    ДР Конго: #DR_Congo
+    Египет: #Egypt
+    Замбия: #Zambia
+    Зимбабве: #Zimbabwe
+    Кабо-Верде: #Cabo_Verde
+    Камерун: #Cameroon
+    Кения: #Kenya
+    Коморы: #Comoros
+    Конго: #Republic_of_the_Congo
+    Кот-д’Ивуар: #Cote_d_Ivoire
+    Лесото: #Lesotho
+    Либерия: #Liberia
+    Ливия: #Libya
+    Маврикий: #Mauritius
+    Мавритания: #Mauritania
+    Мадагаскар: #Madagascar
+    Малави: #Malawi
+    Мали: #Mali
+    Марокко: #Morocco
+    Мозамбик: #Mozambique
+    Намибия: #Namibia
+    Нигер: #Niger
+    Нигерия: #Nigeria
+    Руанда: #Rwanda
+    Сан-Томе и Принсипи: #Sao_Tome_and_Principe
+    Сенегал: #Senegal
+    Сейшелы: #Seychelles
+    Сомали: #Somalia
+    Судан: #Sudan
+    Сьерра-Леоне: #Sierra_Leone
+    Танзания: #Tanzania
+    Того: #Togo
+    Тунис: #Tunisia
+    Уганда: #Uganda
+    ЦАР: #Central_African_Republic
+    Чад: #Chad
+    Экваториальная Гвинея: #Equatorial_Guinea
+    Эритрея: #Eritrea
+    Эсватини: #Eswatini
+    Эфиопия: #Ethiopia
+    ЮАР: #South_Africa
+    Южный Судан: #South_Sudan
+Австралия и Океания: #Oceania
+    Австралия: #Australia
+    Вануату: #Vanuatu
+    Кирибати: #Kiribati
+    Маршалловы Острова: #Marshall_Islands
+    Микронезия: #Micronesia
+    Науру: #Nauru
+    Новая Зеландия: #New_Zealand
+    Палау: #Palau
+    Папуа — Новая Гвинея: #Papua_New_Guinea
+    Самоа: #Samoa
+    Соломоновы Острова: #Solomon_Islands
+    Тонга: #Tonga
+    Тувалу: #Tuvalu
+    Фиджи: #Fiji
+Антарктида: #Antarctica
